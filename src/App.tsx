@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Redirect, Route, Switch } from "react-router-dom";
+import LoginPage from './pages/login/Login';
+import Body from './pages/twitter/Body';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const userExists = localStorage.getItem('user');
+    const isAuthenticated = userExists;
+    return (
+        <div className="app">
+            <div className="app_body">
+        <Switch>
+          <Route exact path={"/"}>
+            <Redirect to={isAuthenticated ? "/twitter" : "/login"}></Redirect>
+          </Route>
+          <Route path={"/login"} component={LoginPage} />
+          <Route path={"/twitter"} component={Body} />
+        </Switch>
+      </div>
+        </div>
+    );
 }
 
 export default App;
