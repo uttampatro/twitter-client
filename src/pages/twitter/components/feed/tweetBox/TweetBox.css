@@ -27,6 +27,7 @@
 }
 
 .tweetBox__tweetButton {
+    cursor: pointer;
     background-color: var(--twitter-color) !important;
     border: none !important;
     color: white !important;

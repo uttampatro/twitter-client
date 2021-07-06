@@ -1,10 +1,33 @@
 import { Avatar, Button } from '@material-ui/core';
 import React, { useState } from 'react';
+import tweetService from '../../../../../services/tweetService';
 import './TweetBox.css';
 
 function TweetBox() {
-    const [tweetMessage, setTweetMessage] = useState('');
-    const [tweetImage, setTweetImage] = useState('');
+    const User = localStorage.getItem('user');
+    const user = User ? JSON.parse(User) : undefined;
+    const [content, setContent] = useState('');
+    const [imageURL, setImageURL] = useState('');
+
+    const tweet = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await tweetService.addTweet(
+                content,
+                imageURL,
+                user.id
+            );
+            if (response) {
+                console.log(response);
+            } else {
+                alert('Content must not be empty!!');
+            }
+            setContent('');
+            setImageURL('');
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div className="tweetBox">
@@ -12,21 +35,29 @@ function TweetBox() {
                 <div className="tweetBox__input">
                     <Avatar>U</Avatar>
                     <input
-                        onChange={e => setTweetMessage(e.target.value)}
-                        value={tweetMessage}
+                        onChange={e => setContent(e.target.value)}
+                        value={content}
                         placeholder="What's happening?"
                         type="text"
                     />
                 </div>
                 <input
-                    value={tweetImage}
-                    onChange={e => setTweetImage(e.target.value)}
+                    value={imageURL}
+                    onChange={e => setImageURL(e.target.value)}
                     className="tweetBox__imageInput"
                     placeholder="Optional: Enter image URL"
                     type="text"
                 />
 
-                <Button type="submit" className="tweetBox__tweetButton">
+                {/* <button onClick={tweet} className="tweetBox__tweetButton">
+                    Tweet
+                </button> */}
+
+                <Button
+                    onClick={tweet}
+                    type="submit"
+                    className="tweetBox__tweetButton"
+                >
                     Tweet
                 </Button>
             </form>

@@ -16,12 +16,23 @@
 }
 
 .feed__header {
+    display: flex;
+    justify-content: space-between;
     position: sticky;
     top: 0;
     background-color: white;
     z-index: 100;
     border: 1px solid var(--twitter-background);
     padding: 15px 20px;
+}
+
+.feed__header > button {
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.feed__header > button:hover {
+    background-color: gray;
 }
 
 .feed__header > h2 {
