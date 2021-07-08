@@ -10,12 +10,16 @@ function TweetBox() {
     const [imageURL, setImageURL] = useState('');
 
     const sendTweet = async (e: any) => {
+        e.preventDefault();
         try {
             const response = await tweetService.addTweet(
                 content,
                 imageURL,
                 user.id
             );
+            if(content === ""){
+                alert('content mush require')
+            }
             setContent('');
             setImageURL('');
         } catch (error) {
