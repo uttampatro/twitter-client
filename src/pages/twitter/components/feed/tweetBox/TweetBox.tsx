@@ -17,7 +17,6 @@ function TweetBox() {
                 imageURL,
                 user.id
             );
-            console.log(response);
             setContent('');
             setImageURL('');
         } catch (error) {

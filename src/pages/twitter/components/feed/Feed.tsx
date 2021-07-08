@@ -7,7 +7,23 @@ import userServices from '../../../../services/userServices';
 import { useHistory } from 'react-router';
 import FlipMove from 'react-flip-move';
 
+export interface ITweet {
+    id: number;
+    content: string;
+    imageURL: string;
+    createdAt: Date;
+    user: IUser;
+}
+
+export interface IUser {
+    id: number;
+    email: string;
+    username: string;
+}
+
 function Feed() {
+    const User = localStorage.getItem('user');
+    const user = User ? JSON.parse(User) : undefined;
     const [posts, setPosts] = useState([]);
     const history = useHistory();
 
@@ -22,7 +38,7 @@ function Feed() {
 
     useEffect(() => {
         fetchTweetList();
-    });
+    }, []);
 
     const logout = async () => {
         try {
@@ -41,10 +57,10 @@ function Feed() {
             </div>
             <TweetBox />
             <FlipMove>
-                {posts?.map((post: any) => {
+                {posts?.map((post: ITweet) => {
                     return (
                         <div>
-                            <Post key={post.id} post={post} />;
+                            <Post key={post.id} post={post} />
                         </div>
                     );
                 })}

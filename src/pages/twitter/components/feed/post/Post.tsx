@@ -6,14 +6,16 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
 import './Post.css';
+import { ITweet } from '../Feed';
 
 interface TweetListProps {
-    post: any;
+    post: ITweet;
 }
 
 function Post(props: TweetListProps) {
     const { post } = props;
-    const { tweet } = post;
+    const { content, imageURL, user, createdAt } = post;
+    const { email, username } = user;
 
     return (
         <div className="post">
@@ -24,18 +26,18 @@ function Post(props: TweetListProps) {
                 <div className="post__header">
                     <div className="post__headerText">
                         <h3>
-                            {tweet.user.username}{' '}
+                            {username}{' '}
                             <span className="post__headerSpecial">
                                 <VerifiedUserIcon className="post__badge" />{' '}
-                                {tweet.user.email}
+                                {email} . {createdAt}
                             </span>
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>{tweet.content}</p>
+                        <p>{content}</p>
                     </div>
                 </div>
-                <img src={tweet.imageURL} alt="" />
+                <img src={imageURL} alt="" />
                 <div className="post__footer">
                     <IconButton>
                         <ChatBubbleOutlineIcon fontSize="small" />
