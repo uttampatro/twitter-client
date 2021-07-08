@@ -20,7 +20,7 @@ function Post(props: TweetListProps) {
     return (
         <div className="post">
             <div className="post__avatar">
-                <Avatar>U</Avatar>
+                <Avatar>{username[0]}</Avatar>
             </div>
             <div className="post__body">
                 <div className="post__header">

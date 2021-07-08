@@ -9,7 +9,7 @@ function TweetBox() {
     const [content, setContent] = useState('');
     const [imageURL, setImageURL] = useState('');
 
-    const tweet = async (e: any) => {
+    const sendTweet = async (e: any) => {
         e.preventDefault();
         try {
             const response = await tweetService.addTweet(
@@ -28,7 +28,7 @@ function TweetBox() {
         <div className="tweetBox">
             <form>
                 <div className="tweetBox__input">
-                    <Avatar>U</Avatar>
+                    <Avatar>{user.username[0]}</Avatar>
                     <input
                         onChange={e => setContent(e.target.value)}
                         value={content}
@@ -44,21 +44,13 @@ function TweetBox() {
                     type="text"
                 />
 
-                <button
-                    onClick={tweet}
+                <Button
+                    onClick={sendTweet}
                     type="submit"
                     className="tweetBox__tweetButton"
                 >
                     Tweet
-                </button>
-
-                {/* <Button
-                    onClick={tweet}
-                    type="submit"
-                    className="tweetBox__tweetButton"
-                >
-                    Tweet
-                </Button> */}
+                </Button>
             </form>
         </div>
     );
