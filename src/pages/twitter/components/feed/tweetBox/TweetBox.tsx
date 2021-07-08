@@ -17,11 +17,7 @@ function TweetBox() {
                 imageURL,
                 user.id
             );
-            if (response) {
-                console.log(response);
-            } else {
-                alert('Content must not be empty!!');
-            }
+            console.log(response);
             setContent('');
             setImageURL('');
         } catch (error) {
@@ -49,17 +45,21 @@ function TweetBox() {
                     type="text"
                 />
 
-                {/* <button onClick={tweet} className="tweetBox__tweetButton">
-                    Tweet
-                </button> */}
-
-                <Button
+                <button
                     onClick={tweet}
                     type="submit"
                     className="tweetBox__tweetButton"
                 >
                     Tweet
-                </Button>
+                </button>
+
+                {/* <Button
+                    onClick={tweet}
+                    type="submit"
+                    className="tweetBox__tweetButton"
+                >
+                    Tweet
+                </Button> */}
             </form>
         </div>
     );

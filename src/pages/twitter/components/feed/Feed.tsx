@@ -41,9 +41,13 @@ function Feed() {
             </div>
             <TweetBox />
             <FlipMove>
-                {posts.map((post: any) => (
-                    <Post key={post.id} post={post} />
-                ))}
+                {posts?.map((post: any) => {
+                    return (
+                        <div>
+                            <Post key={post.id} post={post} />;
+                        </div>
+                    );
+                })}
             </FlipMove>
         </div>
     );
