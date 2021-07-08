@@ -10,7 +10,6 @@ function TweetBox() {
     const [imageURL, setImageURL] = useState('');
 
     const tweet = async (e: any) => {
-        e.preventDefault();
         try {
             const response = await tweetService.addTweet(
                 content,
