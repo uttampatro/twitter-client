@@ -31,7 +31,7 @@
     border-radius: 2px;
 }
 
-.feed__header > button:hover {
+.feed__header > button:hover{
     background-color: gray;
 }
 

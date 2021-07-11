@@ -17,9 +17,9 @@ function TweetBox() {
                 imageURL,
                 user.id
             );
-            if(content === ""){
-                alert('content mush require')
-            }
+            // if (content === '') {
+            //     alert('content must required');
+            // }
             setContent('');
             setImageURL('');
         } catch (error) {
@@ -35,6 +35,7 @@ function TweetBox() {
                     <input
                         onChange={e => setContent(e.target.value)}
                         value={content}
+                        required
                         placeholder="What's happening?"
                         type="text"
                     />
