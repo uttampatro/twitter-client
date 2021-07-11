@@ -17,6 +17,7 @@ import {
     DialogContentText,
 } from '@material-ui/core';
 import tweetService from '../../../../../services/tweetService';
+import DialogWindow from '../dialog/DialogWindow';
 
 interface TweetListProps {
     post: ITweet;
@@ -104,7 +105,10 @@ function Post(props: TweetListProps) {
                                             </div>
                                         </div>
                                         <p className="reply_p">
-                                            Replying to <span className="reply_email" >{email}</span>{' '}
+                                            Replying to{' '}
+                                            <span className="reply_email">
+                                                {email}
+                                            </span>{' '}
                                         </p>
                                         <form>
                                             <div className="dialogContent">
@@ -158,6 +162,7 @@ function Post(props: TweetListProps) {
                             <PublishIcon fontSize="small" />
                         </IconButton>
                     </>
+                    {/* <DialogWindow post={post} /> */}
                 </div>
             </div>
         </div>

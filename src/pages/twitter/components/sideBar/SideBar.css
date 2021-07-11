@@ -29,3 +29,30 @@
     height: 50px !important;
     margin-top: 20px !important;
 }
+
+.sidebar__closeButton {
+    position: 'absolute';
+    right: spacing(1);
+    top: spacing(1);
+    color: var(--twitter-color) !important;
+}
+
+.sidebar__dialogContent {
+    display: flex;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.sidebar__dialogContent > input {
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.sidebar__imageInput {
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
