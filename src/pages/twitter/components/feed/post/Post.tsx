@@ -21,11 +21,11 @@ import { useHistory } from 'react-router';
 
 interface TweetListProps {
     post: ITweet;
-    // onClick: Function;
+    onClick: Function;
 }
 
 function Post(props: TweetListProps) {
-    const { post } = props;
+    const { post, onClick } = props;
     const { content, imageURL, user, createdAt } = post;
     const { email, username } = user;
 
@@ -74,7 +74,7 @@ function Post(props: TweetListProps) {
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>{content}</p>
+                        <p onClick={() => onClick(post.id)}>{content}</p>
                     </div>
                 </div>
                 <img src={imageURL} alt="" />
@@ -150,7 +150,7 @@ function Post(props: TweetListProps) {
                                     variant="contained"
                                     className="tweetButton"
                                 >
-                                    Tweet
+                                    Reply
                                 </Button>
                             </DialogActions>
                         </Dialog>

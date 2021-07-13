@@ -50,18 +50,16 @@ function Feed() {
         }
     };
 
-    // const goToReplyFeed = async (parentTweetId: number) => {
-    //     try {
-    //         const response = await TweetService.getReplyTweet(parentTweetId);
-    //         setPosts(response);
-    //         console.log(response);
-    //         if (response) {
-    //             history.push('/twitterReplyFeed');
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+    const goToReplyFeed = async (parentTweetId: number) => {
+        try {
+            const response = await TweetService.getReplyTweet(parentTweetId);
+            setPosts(response);
+            console.log(response);
+            history.push('/twitterReplyFeed');
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div className="feed">
@@ -75,7 +73,7 @@ function Feed() {
                     return (
                         <div>
                             <Post
-                                // onClick={goToReplyFeed}
+                                onClick={goToReplyFeed}
                                 key={post.id}
                                 post={post}
                             />
