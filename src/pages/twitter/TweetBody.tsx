@@ -1,6 +1,6 @@
 import React from 'react';
-import './Body.css';
-import Feed from './components/feed/Feed';
+import './TweetBody.css';
+import TweetFeed from './components/tweetFeed/TweetFeed';
 import SideBar from './components/sideBar/SideBar';
 import Widgets from './components/widgets/Widgets';
 
@@ -12,10 +12,9 @@ function Body() {
         return <>Loading...</>;
     }
     return (
-        <div className="body">
+        <div className="tweetBody">
             <SideBar />
-            <Feed />
-            {/* <TweetFeed /> */}
+            <TweetFeed />
             <Widgets />
         </div>
     );

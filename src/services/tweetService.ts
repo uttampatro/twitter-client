@@ -1,8 +1,10 @@
 import axios from './axios';
 import * as config from './../config/api';
+import { ITweetReply } from '../pages/twitter/components/tweetFeed/TweetFeed';
 
 export interface ITweetService {
     getTweetList(): Promise<any[]>;
+    getReplyTweet(parentTweetId: number): Promise<ITweetReply[]>;
     addTweet(content: string, imageURL: string, userId: number): Promise<any[]>;
     addTweetReply(
         replyContent: string,
@@ -18,9 +20,23 @@ export class TweetService implements ITweetService {
             const response = await axios.get(
                 `${config.apiConfig.baseUrl}/v1/tweetList`
             );
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async getReplyTweet(parentTweetId: number): Promise<ITweetReply[]> {
+        try {
+            const response = await axios.get(
+                `${config.apiConfig.baseUrl}/v1/replyTweetList/${parentTweetId}`
+            );
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 

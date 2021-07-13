@@ -6,6 +6,7 @@ import TweetService from '../../../../services/tweetService';
 import userServices from '../../../../services/userServices';
 import { useHistory } from 'react-router';
 import FlipMove from 'react-flip-move';
+import TweetFeed, { ITweetReply } from '../tweetFeed/TweetFeed';
 
 export interface ITweet {
     id: number;
@@ -24,7 +25,7 @@ export interface IUser {
 function Feed() {
     const User = localStorage.getItem('user');
     const user = User ? JSON.parse(User) : undefined;
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<any[]>([]);
     const history = useHistory();
 
     const fetchTweetList = async () => {
@@ -49,6 +50,19 @@ function Feed() {
         }
     };
 
+    // const goToReplyFeed = async (parentTweetId: number) => {
+    //     try {
+    //         const response = await TweetService.getReplyTweet(parentTweetId);
+    //         setPosts(response);
+    //         console.log(response);
+    //         if (response) {
+    //             history.push('/twitterReplyFeed');
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
     return (
         <div className="feed">
             <div className="feed__header">
@@ -57,14 +71,20 @@ function Feed() {
             </div>
             <TweetBox />
             <FlipMove>
-                {posts?.map((post: ITweet) => {
+                {posts?.map((post: any) => {
                     return (
                         <div>
-                            <Post key={post.id} post={post} />
+                            <Post
+                                // onClick={goToReplyFeed}
+                                key={post.id}
+                                post={post}
+                            />
                         </div>
                     );
                 })}
             </FlipMove>
+            {}
+            {/* <TweetFeed /> */}
         </div>
     );
 }

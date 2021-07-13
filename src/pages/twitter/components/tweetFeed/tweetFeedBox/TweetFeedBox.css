@@ -1,0 +1,84 @@
+.tweetFeedBox {
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 8px solid var(--twitter-background);
+    padding-right: 10px;
+}
+
+.tweetFeedBox__user {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.tweetFeedBox__avatar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tweetFeedBox__userBody {
+    padding-left: 10px;
+}
+
+.tweetFeedBox__userBody > h3 {
+    font-weight: 700;
+}
+
+.tweetFeedBox__userBody > h4 {
+    font-weight: 400;
+    color: gray;
+}
+
+.tweetFeedBox__description {
+    padding: 10px;
+    border-bottom: 1px solid var(--twitter-background);
+}
+
+.time_p {
+    padding-top: 10px;
+    font-weight: 500;
+    color: gray;
+}
+
+.tweetFeedBox__footer {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid var(--twitter-background);
+}
+
+.tweetFeedBoxForm > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tweetFeedBoxForm__input {
+    padding: 20px;
+    display: flex;
+}
+
+.tweetFeedBoxForm__input > input {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+}
+
+.tweetFeedBoxForm__imageInput {
+    border: none;
+    padding: 10px;
+}
+
+.tweetFeedBoxForm__tweetButton {
+    cursor: pointer;
+    background-color: var(--twitter-color) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 900 !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    width: 80px;
+    height: 40px !important;
+    margin-top: 20px !important;
+    margin-left: auto !important;
+}

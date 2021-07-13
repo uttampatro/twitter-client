@@ -1,90 +1,44 @@
 import { Avatar, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
+import './TweetPost.css';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
-import './Post.css';
-import { ITweet } from '../Feed';
-import CloseIcon from '@material-ui/icons/Close';
-import {
-    Box,
-    Button,
-    Dialog,
-    DialogContent,
-    DialogActions,
-    DialogContentText,
-} from '@material-ui/core';
-import tweetService from '../../../../../services/tweetService';
-import { useHistory } from 'react-router';
 
-interface TweetListProps {
-    post: ITweet;
-    // onClick: Function;
-}
-
-function Post(props: TweetListProps) {
-    const { post } = props;
-    const { content, imageURL, user, createdAt } = post;
-    const { email, username } = user;
-
-    const User = localStorage.getItem('user');
-    const userExist = User ? JSON.parse(User) : undefined;
-    const history = useHistory();
-
-    const [replyContent, setReplyContent] = useState('');
-    const [replyImageURL, setReplyImageURL] = useState('');
-    const [showDialog, setShowDialog] = useState(false);
-
-    const openDialog = () => setShowDialog(true);
-    const closeDialog = () => setShowDialog(false);
-
-    const replyTweet = async (e: any) => {
-        e.preventDefault();
-        try {
-            const response = await tweetService.addTweetReply(
-                replyContent,
-                replyImageURL,
-                post.id,
-                userExist.id
-            );
-            setReplyContent('');
-            setReplyImageURL('');
-            setShowDialog(false);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
+function TweetPost() {
     return (
-        <div className="post">
-            <div className="post__avatar">
-                <Avatar>{username[0]}</Avatar>
+        <div className="tweetPost">
+            <div className="tweetPost__avatar">
+                <Avatar></Avatar>
             </div>
-            <div className="post__body">
-                <div className="post__header">
-                    <div className="post__headerText">
+            <div className="tweetPost__body">
+                <div className="tweetPost__header">
+                    <div className="tweetPost__headerText">
                         <h3>
-                            {username}{' '}
-                            <span className="post__headerSpecial">
-                                <VerifiedUserIcon className="post__badge" />{' '}
-                                {email} . {createdAt}
+                            username{' '}
+                            <span className="tweetPost__headerSpecial">
+                                <VerifiedUserIcon className="tweetPost__badge" />{' '}
+                                email . createdAt
                             </span>
                         </h3>
                     </div>
-                    <div className="post__headerDescription">
-                        <p>{content}</p>
+                    <div className="tweetPost__headerDescription">
+                        <p>content</p>
                     </div>
                 </div>
-                <img src={imageURL} alt="" />
-                <div className="post__footer">
+                <img
+                    src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5kaWF8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
+                    alt=""
+                />
+                <div className="tweetPost__footer">
                     <>
-                        <IconButton onClick={openDialog}>
+                        <IconButton>
                             <ChatBubbleOutlineIcon fontSize="small" />
                         </IconButton>
 
-                        <Dialog open={showDialog}>
+                        {/* <Dialog open={showDialog}>
                             <div>
                                 {closeDialog ? (
                                     <IconButton
@@ -153,7 +107,7 @@ function Post(props: TweetListProps) {
                                     Tweet
                                 </Button>
                             </DialogActions>
-                        </Dialog>
+                        </Dialog> */}
 
                         <IconButton>
                             <RepeatIcon fontSize="small" />
@@ -171,4 +125,4 @@ function Post(props: TweetListProps) {
     );
 }
 
-export default Post;
+export default TweetPost;

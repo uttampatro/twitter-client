@@ -13,6 +13,7 @@
 .post__body > img {
     border-radius: 20px;
     width: 100%;
+    cursor: pointer;
 }
 
 .post__footer {
@@ -24,6 +25,16 @@
 .post__headerDescription {
     margin-bottom: 10px;
     font-size: 15px;
+}
+
+.post__headerDescription > p {
+    cursor: pointer;
+}
+
+.post__headerDescription > img {
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
 }
 
 .post__headerText > h3 {

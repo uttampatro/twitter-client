@@ -17,9 +17,6 @@ function TweetBox() {
                 imageURL,
                 user.id
             );
-            // if (content === '') {
-            //     alert('content must required');
-            // }
             setContent('');
             setImageURL('');
         } catch (error) {
