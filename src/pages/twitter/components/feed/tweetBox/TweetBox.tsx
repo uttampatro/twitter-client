@@ -6,18 +6,18 @@ import './TweetBox.css';
 function TweetBox() {
     const User = localStorage.getItem('user');
     const user = User ? JSON.parse(User) : undefined;
-    const [content, setContent] = useState('');
+    const [text, setText] = useState('');
     const [imageURL, setImageURL] = useState('');
 
     const sendTweet = async (e: any) => {
         e.preventDefault();
         try {
             const response = await tweetService.addTweet(
-                content,
+                text,
                 imageURL,
                 user.id
             );
-            setContent('');
+            setText('');
             setImageURL('');
         } catch (error) {
             console.log(error);
@@ -30,11 +30,11 @@ function TweetBox() {
                 <div className="tweetBox__input">
                     <Avatar>{user.username[0]}</Avatar>
                     <input
-                        onChange={e => setContent(e.target.value)}
-                        value={content}
-                        required
+                        onChange={e => setText(e.target.value)}
+                        value={text}
                         placeholder="What's happening?"
                         type="text"
+                        required
                     />
                 </div>
                 <input

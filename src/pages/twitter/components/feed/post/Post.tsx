@@ -21,12 +21,12 @@ import { useHistory } from 'react-router';
 
 interface TweetListProps {
     post: ITweet;
-    onClick: Function;
+    // onClick: Function;
 }
 
 function Post(props: TweetListProps) {
-    const { post, onClick } = props;
-    const { content, imageURL, user, createdAt } = post;
+    const { post } = props;
+    const { text, imageURL, user, createdAt } = post;
     const { email, username } = user;
 
     const User = localStorage.getItem('user');
@@ -44,10 +44,10 @@ function Post(props: TweetListProps) {
         e.preventDefault();
         try {
             const response = await tweetService.addTweetReply(
-                replyContent,
-                replyImageURL,
+                userExist.id,
                 post.id,
-                userExist.id
+                replyContent,
+                replyImageURL
             );
             setReplyContent('');
             setReplyImageURL('');
@@ -74,7 +74,7 @@ function Post(props: TweetListProps) {
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p onClick={() => onClick(post.id)}>{content}</p>
+                        <p>{text}</p>
                     </div>
                 </div>
                 <img src={imageURL} alt="" />
@@ -103,7 +103,7 @@ function Post(props: TweetListProps) {
                                             <Avatar>{username[0]}</Avatar>
                                             <div className="p">
                                                 <h3>{username}</h3>
-                                                <p>{content}</p>
+                                                <p>{text}</p>
                                             </div>
                                         </div>
                                         <p className="reply_p">
@@ -166,6 +166,11 @@ function Post(props: TweetListProps) {
                         </IconButton>
                     </>
                 </div>
+                {/* <div>
+                    <a href="http://localhost:3000/twitterReplyFeed">
+                        Show this thread
+                    </a>
+                </div> */}
             </div>
         </div>
     );

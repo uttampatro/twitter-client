@@ -15,7 +15,6 @@ function Body() {
         <div className="body">
             <SideBar />
             <Feed />
-            {/* <TweetFeed /> */}
             <Widgets />
         </div>
     );

@@ -4,13 +4,13 @@ import { ITweetReply } from '../pages/twitter/components/tweetFeed/TweetFeed';
 
 export interface ITweetService {
     getTweetList(): Promise<any[]>;
-    getReplyTweet(parentTweetId: number): Promise<ITweetReply[]>;
-    addTweet(content: string, imageURL: string, userId: number): Promise<any[]>;
+    // getReplyTweet(parentTweetId: number): Promise<ITweetReply[]>;
+    addTweet(text: string, imageURL: string, userId: number): Promise<any[]>;
     addTweetReply(
-        replyContent: string,
-        replyImageURL: string,
+        userId: number,
         parentTweetId: number,
-        userId: number
+        text: string,
+        imageURL: string
     ): Promise<any[]>;
 }
 
@@ -32,6 +32,7 @@ export class TweetService implements ITweetService {
             const response = await axios.get(
                 `${config.apiConfig.baseUrl}/v1/replyTweetList/${parentTweetId}`
             );
+            // debugger;
             console.log(response.data);
             return response.data;
         } catch (error) {
@@ -41,7 +42,7 @@ export class TweetService implements ITweetService {
     }
 
     async addTweet(
-        content: string,
+        text: string,
         imageURL: string,
         userId: number
     ): Promise<any[]> {
@@ -49,7 +50,7 @@ export class TweetService implements ITweetService {
             const response = await axios.post(
                 `${config.apiConfig.baseUrl}/v1/tweet`,
                 {
-                    content,
+                    text,
                     imageURL,
                     userId,
                 }
@@ -64,19 +65,19 @@ export class TweetService implements ITweetService {
         }
     }
     async addTweetReply(
-        replyContent: string,
-        replyImageURL: string,
+        userId: number,
         parentTweetId: number,
-        userId: number
+        text: string,
+        imageURL: string
     ): Promise<any[]> {
         try {
             const response = await axios.post(
                 `${config.apiConfig.baseUrl}/v1/replyTweet`,
                 {
-                    replyContent,
-                    replyImageURL,
-                    userId,
+                    text,
+                    imageURL,
                     parentTweetId,
+                    userId,
                 }
             );
             return response.data;
